@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:customEntry="clr-namespace:Grow.BorderlessEntry"
+             xmlns:skViews="clr-namespace:Grow.ElementViews.SKViews"
+             x:Class="Grow.Views.Registration.RegisterationPageAfterLogin">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <skViews:RectGradientView Grid.RowSpan="1" StartColor="{StaticResource Primary}" EndColor="{StaticResource Secondary}" VerticalOptions="FillAndExpand"/>
+            <StackLayout Grid.Row="0" VerticalOptions="Center">
+                <Label Text="Grow"
+                Visual="Material"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                FontSize="Title"
+                TextColor="{StaticResource GrowGreenText}"
+                />
+
+                <Label Text="Finish Creating your account"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontSize="Subtitle"
+                    TextColor="WhiteSmoke" />
+
+                <Label Text="We just need a few more things to create your account"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontSize="Subtitle"
+                    TextColor="WhiteSmoke" />
+            </StackLayout>
+            
+            <StackLayout Grid.Row="1" Orientation="Vertical">
+
+                <pancake:PancakeView Margin="25,10" VerticalOptions="EndAndExpand" BackgroundColor="#E6EEED">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="firstUser.png" Aspect="AspectFit" HeightRequest="20" Margin="15,0,10,0"/>
+                        <customEntry:CustomEntryBorderless
+                            BackgroundColor="#E6EEED"
+                            FontSize="12"
+                            Placeholder="First Name"
+                            PlaceholderColor="Black"
+                            Keyboard="Default"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{Binding FirstName}"
+                            TextColor="Black" />
+                    </StackLayout>
+                </pancake:PancakeView>
+
+                <pancake:PancakeView Margin="25,10" VerticalOptions="EndAndExpand" BackgroundColor="#E6EEED">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="lastUser.png" Aspect="AspectFit" HeightRequest="20" Margin="15,0,10,0"/>
+                        <customEntry:CustomEntryBorderless
+                            BackgroundColor="#E6EEED"
+                            FontSize="12"
+                            Placeholder="Last Name"
+                            PlaceholderColor="Black"
+                            Keyboard="Default"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{Binding LastName}"
+                            TextColor="Black" />
+                    </StackLayout>
+                </pancake:PancakeView>
+
+                <Label Margin="25,0" VerticalOptions="CenterAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Where are you from? " TextColor="Black" />
+                            <Span Text="Locate Me" TextColor="{StaticResource GrowGreenText}" FontFamily="RubikBoldFont">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="LocateMe_Tapped"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <pancake:PancakeView Margin="25,10" VerticalOptions="EndAndExpand" BackgroundColor="#E6EEED">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="marker.png" Aspect="AspectFit" HeightRequest="20" Margin="15,0,10,0"/>
+                        <customEntry:CustomEntryBorderless
+                            BackgroundColor="#E6EEED"
+                            FontSize="12"
+                            Placeholder="City"
+                            PlaceholderColor="Black"
+                            Keyboard="Default"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{Binding City}"
+                            TextColor="Black" />
+                    </StackLayout>
+                </pancake:PancakeView>
+
+                <pancake:PancakeView Margin="25,10" VerticalOptions="EndAndExpand" BackgroundColor="#E6EEED">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="marker.png" Aspect="AspectFit" HeightRequest="20" Margin="15,0,10,0"/>
+                        <!--<Picker x:Name="StatePicker" SelectedIndex="{Binding State}" ItemsSource="{Binding StateList}" Title="State" />-->
+                        <customEntry:CustomEntryBorderless
+                            BackgroundColor="#E6EEED"
+                            FontSize="12"
+                            Placeholder="State"
+                            PlaceholderColor="Black"
+                            Keyboard="Default"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{Binding State}"
+                            TextColor="Black" />
+                    </StackLayout>
+                </pancake:PancakeView>
+
+                <pancake:PancakeView Margin="25,10" VerticalOptions="EndAndExpand" BackgroundColor="#E6EEED">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="marker.png" Aspect="AspectFit" HeightRequest="20" Margin="15,0,10,0"/>
+                        <customEntry:CustomEntryBorderless
+                            BackgroundColor="#E6EEED"
+                            FontSize="12"
+                            Placeholder="Country"
+                            PlaceholderColor="Black"
+                            Keyboard="Default"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{Binding Country}"
+                            TextColor="Black" />
+                    </StackLayout>
+                </pancake:PancakeView>
+
+
+                <Label Text="Select Date of Birth: " Margin="25,0"/>
+                
+                <pancake:PancakeView Margin="25,10" VerticalOptions="EndAndExpand" BackgroundColor="#E6EEED">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="cake.png" Aspect="AspectFit" HeightRequest="20" Margin="15,0,0,0"/>
+                        <DatePicker x:Name="DOBPicker" Margin="10,0" MinimumDate="1/1/1900" MaximumDate="1/1/2015" Date="{Binding DOB}" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </pancake:PancakeView>
+
+                <Label Text="{Binding ErrorPrompt}" TextColor="OrangeRed" />
+                
+            </StackLayout>
+
+            <Button Grid.Row="2" 
+                    Margin="60,0"
+                    Text="Sign In"
+                    Command="{Binding SignUpCommand}"
+                    BackgroundColor="{StaticResource GrowGreenText}"
+                    VerticalOptions="Center"
+                    CornerRadius="21"/>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

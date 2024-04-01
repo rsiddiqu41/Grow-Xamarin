@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             x:Class="Grow.Views.Registration.PhoneNumber.RegistrationPhoneExistsPage">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="#ECECEC">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" Orientation="Vertical" >
+
+                <Label VerticalOptions="Start" Text="{Binding Header}" Margin="20,20" HorizontalTextAlignment="Center" FontFamily="RubikBoldFont" TextColor="{StaticResource GrowGreenText}" FontSize="36"/>
+
+                <Label Text="{Binding Body}"
+                       Margin="20,20"
+                       FontSize="16"
+                       FontFamily="StartPageDescriptionRegular"
+                       HorizontalOptions="CenterAndExpand" />
+
+            </StackLayout>
+
+            <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Text="Return to the Start page" />
+
+            <Button Grid.Row="1"
+                Text="Start page"                    
+                    Command="{Binding StartCommand}"
+                    BackgroundColor="{StaticResource GrowGreenText}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    WidthRequest="350"
+                    CornerRadius="21"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:local="clr-namespace:Grow.Styles"
+             xmlns:anim="clr-namespace:Xamanimation;assembly=Xamanimation"
+             x:Class="Grow.Views.FinanceAnalyzePage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ContentPage.Resources>
+        <anim:FadeToAnimation x:Key="NavBarFadeIn" Target="{x:Reference FakeNavBar}" Opacity="1" Duration="500" />
+        <anim:FadeToAnimation x:Key="NavBarFadeOut" Target="{x:Reference FakeNavBar}" Opacity="0" Duration="500" />
+    </ContentPage.Resources>
+
+    <Grid BackgroundColor="{StaticResource OffWhite}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="88"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="360" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--<BoxView HorizontalOptions="Fill" TranslationY="{Binding RelativeSourceY,Source={x:Reference Scroll}, Converter={StaticResource ScrollValueConverter}, ConverterParameter='-5;0;200;false;0'}" />-->
+
+            <Frame Grid.Row="0" BackgroundColor="{StaticResource OffWhite}" HorizontalOptions="FillAndExpand" TranslationY="{Binding RelativeScrollY, 
+                                Source={x:Reference Scroll}, 
+                                Converter={StaticResource ScrollValueConverter}, 
+                                ConverterParameter='-5;0;200;false;0'}" Margin="20,20">
+
+                <microcharts:ChartView x:Name="IncomeOutcomeChart" />
+
+                <Frame.Behaviors>
+                    <anim:AnimateProgressDouble 
+                        TargetProperty="VisualElement.Opacity"
+                        Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                        Minimum="0"
+                        Maximum="180"
+                        From="1"
+                        To="0"/>
+
+                </Frame.Behaviors>
+            </Frame>
+
+            <RefreshView
+                RefreshColor="{StaticResource GrowGreenText}"
+                Grid.RowSpan="2"
+                IsRefreshing="{Binding IsLoading, Mode=TwoWay}"
+                Command="{Binding RefreshCommand}">
+                <ScrollView>
+                    <ScrollView.Behaviors>
+                        <anim:ScrollViewScrollBehavior x:Name="Scroll" />
+                    </ScrollView.Behaviors>
+                    <StackLayout Margin="15,360,15,15" Spacing="20" >
+
+                        <!-- First Section (Knowledge button)-->
+
+                        <Frame Background="{StaticResource OffWhite}" Visual="Material" >
+                            <Frame.Behaviors>
+                                <anim:AnimateProgressDouble 
+                                    TargetProperty="VisualElement.Scale"
+                                    Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                    From="1"
+                                    To="0.75"
+                                    Minimum="320"
+                                    Maximum="400"/>
+                                <anim:AnimateProgressDouble 
+                                    TargetProperty="VisualElement.Opacity"
+                                    Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                    From="1"
+                                    To="0.9"
+                                    Minimum="0"
+                                    Maximum="320"/>
+                                <anim:AnimateProgressDouble 
+                                    TargetProperty="VisualElement.Opacity"
+                                    Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                    From="0.9"
+                                    To="0"
+                                    Minimum="320"
+                                    Maximum="400"/>
+                            </Frame.Behaviors>
+                            <StackLayout 
+                                Spacing="15" 
+                                xct:StateLayout.CurrentState="{Binding MainState}"
+                                xct:StateLayout.AnimateStateChanges="True"
+                                >
+                                <xct:StateLayout.StateViews>
+                                    <xct:StateView StateKey="Loading">
+                                        <StackLayout 
+                                            Spacing="15" x:Name="Loader">
+                                            <StackLayout.Resources>
+                                                <anim:StoryBoard x:Key="LoadingBoard" Target="{x:Reference Loader}">
+                                                    <anim:FadeToAnimation Opacity="0.5" Duration="500"/>
+                                                    <anim:FadeToAnimation Opacity="1" Duration="500"/>
+                                                    <anim:FadeToAnimation Opacity="0.5" Duration="500"/>
+                                                    <anim:FadeToAnimation Opacity="1" Duration="500"/>
+                                                    <anim:FadeToAnimation Opacity="0.5" Duration="500"/>
+                                                    <anim:FadeToAnimation Opacity="1" Duration="500"/>
+                                                </anim:StoryBoard>
+                                            </StackLayout.Resources>
+                                            <StackLayout.Behaviors>
+                                                <anim:EntranceTransition
+	                                                Duration="1500"/>
+                                            </StackLayout.Behaviors>
+                                            <StackLayout.Triggers>
+                                                <DataTrigger
+                                                    TargetType="StackLayout"
+                                                     Binding="{Binding IsLoading}"
+                                                     Value="true">
+                                                    <DataTrigger.EnterActions>
+                                                        <anim:BeginAnimation
+                                                        Animation="{StaticResource LoadingBoard}" />
+                                                    </DataTrigger.EnterActions>
+                                                </DataTrigger>
+                                            </StackLayout.Triggers>
+                                        </StackLayout>
+                                    </xct:StateView>
+                                </xct:StateLayout.StateViews>
+
+                                <Frame>
+                                    <StackLayout>
+                                        <microcharts:ChartView x:Name="CategoricalSpendingChart" />
+                                        <Button 
+                                            class="btn"
+                                            Visual="Default"
+                                            TextColor="White"
+                                            Text="Knowledge Section"
+                                            Command="{Binding KnowledgeCommand}"
+                                            BackgroundColor="#FF9900" />
+                                    </StackLayout>
+                                </Frame>
+
+                            </StackLayout>
+                        </Frame>
+
+                        <!--Second Section (Finance Summary Frame)-->
+
+                        <Frame Background="{StaticResource OffWhite}" Visual="Material" >
+                            <StackLayout Spacing="15"
+                                xct:StateLayout.CurrentState="{Binding MainState}"
+                                xct:StateLayout.AnimateStateChanges="True">
+                                <xct:StateLayout.StateViews>
+                                    <xct:StateView StateKey="Loading">
+                                        <StackLayout x:Name="DetailsLoader">
+                                            <StackLayout.Resources>
+                                                <anim:StoryBoard x:Key="LoadingDetails" Target="{x:Reference DetailsLoader}">
+                                                    <anim:FadeToAnimation Opacity="0.5" Duration="500"/>
+                                                    <anim:FadeToAnimation Opacity="1" Duration="500"/>
+                                                    <anim:FadeToAnimation Opacity="0.5" Duration="500"/>
+                                                    <anim:FadeToAnimation Opacity="1" Duration="500"/>
+                                                    <anim:FadeToAnimation Opacity="0.5" Duration="500"/>
+                                                    <anim:FadeToAnimation Opacity="1" Duration="500"/>
+                                                </anim:StoryBoard>
+                                            </StackLayout.Resources>
+                                            <StackLayout.Triggers>
+                                                <DataTrigger 
+                                                    TargetType="StackLayout"
+                                                     Binding="{Binding IsBusy}"
+                                                     Value="true">
+                                                    <DataTrigger.EnterActions>
+                                                        <anim:BeginAnimation
+                                                        Animation="{StaticResource LoadingDetails}" />
+                                                    </DataTrigger.EnterActions>
+
+                                                </DataTrigger>
+                                            </StackLayout.Triggers>
+                                        </StackLayout>
+
+                                    </xct:StateView>
+                                </xct:StateLayout.StateViews>
+                                <Label HorizontalOptions="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontSize="20">Finance Summary</Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <StackLayout>
+                                    <Frame Padding="15,15" >
+                                        
+                                    </Frame>
+
+                                    <Frame Padding="15,15">
+                                       
+                                    </Frame>
+
+                                    <Frame Padding="15,15">
+                                        
+                                    </Frame>
+
+                                    <Frame Padding="15,15">
+                                        
+                                    </Frame>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+            </RefreshView>
+        </Grid>
+        <FlexLayout
+            Direction="Row"
+            Padding="15,42,15,15">
+            <ImageButton 
+                FlexLayout.Shrink="0" Command="{Binding FlyoutCommand}" Aspect="AspectFit" BackgroundColor="Transparent" Visual="Material">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="FontAwesomeSolid"  Glyph="{x:Static local:FontAwesomeIcons.Bars}" Color="Black"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <BoxView FlexLayout.Grow="1" />
+            <ImageButton Margin="15,0,0,0" FlexLayout.Shrink="0" Command="{Binding PlaidCommand}" Aspect="AspectFit" BackgroundColor="Transparent" Visual="Material">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static local:FontAwesomeIcons.Plus}" Color="Black"/>
+                </ImageButton.Source>
+            </ImageButton>
+        </FlexLayout>
+
+        <FlexLayout 
+            x:Name="FakeNavBar"
+            BackgroundColor="White"
+            Direction="Row"
+            Opacity="0"
+            Padding="15,42,15,15">
+            <FlexLayout.Triggers>
+                <DataTrigger TargetType="FlexLayout"
+                            Binding="{Binding ScrollY, 
+                                    Source={x:Reference Scroll}, 
+                                    Converter={StaticResource ComparisonConverter},
+                                    ConverterParameter='180;>'}"
+                            Value="true">
+                    <DataTrigger.EnterActions>
+                        <anim:BeginAnimation
+                                Animation="{StaticResource NavBarFadeIn}" />
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <anim:BeginAnimation
+                                Animation="{StaticResource NavBarFadeOut}" />
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </FlexLayout.Triggers>
+            <ImageButton FlexLayout.Shrink="0" Command="{Binding FlyoutCommand}" Aspect="AspectFit" BackgroundColor="Transparent" Visual="Material">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="FontAwesomeSolid"  Glyph="{x:Static local:FontAwesomeIcons.Bars}" Color="{StaticResource NeutralGray}"/>
+                </ImageButton.Source>
+            </ImageButton>
+
+            <Label
+            Text="{Binding Name}" 
+            FontSize="18"
+            Margin="10,0"
+            VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"
+            TextColor="{StaticResource NeutralGray}"
+            LineBreakMode="TailTruncation"
+            FlexLayout.AlignSelf="Center"
+            FlexLayout.Grow="1" />
+
+            <ImageButton 
+            Margin="15,0,0,0" FlexLayout.Shrink="0" Command="{Binding PlaidCommand}" Aspect="AspectFit" BackgroundColor="Transparent" Visual="Material">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{x:Static local:FontAwesomeIcons.Plus}" Color="{StaticResource NeutralGray}"/>
+                </ImageButton.Source>
+            </ImageButton>
+        </FlexLayout>
+
+    </Grid>
+</ContentPage>

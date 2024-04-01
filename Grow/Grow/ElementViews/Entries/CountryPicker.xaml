@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Grow.ElementViews.Entries.CountryPicker"
+             xmlns:vm="clr-namespace:Grow.ElementViewModels">
+
+    <ContentView.BindingContext>
+        <vm:CountryPickerViewModel/>
+    </ContentView.BindingContext>
+
+    <ContentView.Content>
+        <Frame
+                        CornerRadius="10"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="0,40,0,0"
+                        Padding="0"
+                        BorderColor="Gray"
+                        IsClippedToBounds="True"
+                        BackgroundColor="White">
+            <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowPopupCommand}"/>
+                </StackLayout.GestureRecognizers>
+                <Label Text="{Binding SelectedCountry.CountryName}"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Start"
+                                   Margin="10,0"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding SelectedCountry.CountryCode, StringFormat='(+{0})'}"
+                                   VerticalTextAlignment="Center"
+                                   Margin="20,0"
+                                   HorizontalTextAlignment="End"
+                                   HorizontalOptions="EndAndExpand"
+                                   VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

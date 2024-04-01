@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:skViews="clr-namespace:Grow.ElementViews.SKViews"
+             xmlns:views="clr-namespace:Grow.Views"
+             xmlns:local="clr-namespace:Grow.Styles"
+             mc:Ignorable="d"
+             x:Class="Grow.Views.LoginPage"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.PresentationMode="ModalAnimated">
+
+    <!--<NavigationPage.TitleView>
+        <Label Text="Login Page" TextColor="{StaticResource GrowGreenText}" />
+    </NavigationPage.TitleView>-->
+    
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <skViews:RectGradientView Grid.RowSpan="2" StartColor="{StaticResource Primary}" EndColor="{StaticResource Secondary}" VerticalOptions="FillAndExpand"/>
+        
+        <!-- Place Compnay Icon and Sign into Grow text on top half of page-->
+        
+        <StackLayout Margin="0,20,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".25*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <ImageButton Grid.Column="0" Command="{Binding BackCommand}" Aspect="AspectFit" BackgroundColor="Transparent" Visual="Material">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="FontAwesomeSolid"  Glyph="{x:Static local:FontAwesomeIcons.Times}" Color="{StaticResource GrowGreenText}"/>
+                    </ImageButton.Source>
+                </ImageButton>
+
+                <Label Grid.ColumnSpan="2" Text="Sign in to Grow" TextColor="{StaticResource GrowGreenText}" FontFamily="RubikBoldFont" FontSize="30" HorizontalOptions="CenterAndExpand"/>
+
+            </Grid>
+            <!--<StackLayout Orientation="Horizontal" Padding="20">
+                <ImageButton HorizontalOptions="Start" Command="{Binding BackCommand}" Aspect="AspectFit" BackgroundColor="Transparent" Visual="Material">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="FontAwesomeSolid"  Glyph="{x:Static local:FontAwesomeIcons.Times}" Color="{StaticResource GrowGreenText}"/>
+                    </ImageButton.Source>
+                </ImageButton>
+                <Label Text="Sign in to Grow" TextColor="{StaticResource GrowGreenText}" FontFamily="RubikBoldFont" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" />
+            </StackLayout>-->
+        </StackLayout>    
+        
+        <!-- Login buttons on bottom half of page-->
+        <StackLayout Grid.Row="1" >
+            <Label Margin="25,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="By signing in, you have read and agree to our " TextColor="White" FontFamily="StartPageDescriptionLight" />
+                        <Span Text="Terms of Service" TextColor="{StaticResource GrowGreenText}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TermsOfService_Tapped"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                        <Span Text=" and " TextColor="White" />
+                        <Span Text="Privacy Policy" TextColor="{StaticResource GrowGreenText}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PrivacyPolicy_Tapped"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <!--<Label Text="By signing in, you have read and agree to our Terms of Service and Privacy Policy" TextColor="White" HorizontalTextAlignment="Center" Padding="10"/>-->
+            <views:LoginRegistrationOptionView BindingContext="{Binding LoginPhoneViewModel}" />
+            <views:LoginRegistrationOptionView BindingContext="{Binding LoginEmailViewModel}" />
+            <views:LoginRegistrationOptionView BindingContext="{Binding LoginGoogleViewModel}" />
+        </StackLayout> 
+            
+    </Grid>
+
+        <!--***************THIS IS THE PROTOTYPE LOGIN PAGE BELOW***************-->
+
+    <!--<Grid Background="{StaticResource BackgroundGradient}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+               Text="Grow"
+               TextColor="{StaticResource GrowGreenText}"
+               VerticalTextAlignment="Center"
+               HorizontalOptions="Center"
+               FontSize="50"
+               FontAttributes="Bold"/>
+
+
+        <Grid Grid.Row="1" BackgroundColor="White" Padding="20" Margin="20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Label Text="Login" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Entry Placeholder="Email or Username" Text="{ Binding EmailUsername }" WidthRequest="300" />
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Entry Placeholder="Password" Text="{ Binding Password }" WidthRequest="300" IsPassword="True"/>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Button Text="LOGIN" BackgroundColor="{StaticResource GrowGreenText}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" WidthRequest="400" Command="{ Binding LoginCommand }" CornerRadius="7"/>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Don't have an account? " TextColor="White" />
+                        <Span Text="Create Account" TextColor="{StaticResource GrowGreenText}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CreateAccount_Tapped"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Grid.Row="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Forgot your password? " TextColor="White" />
+                        <Span Text="Reset Password" TextColor="{StaticResource GrowGreenText}">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ResetPassword_Tapped"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+    </Grid>-->
+</ContentPage>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Grow.Converters"
+             x:Class="Grow.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--
+                    **************** First background gradient (darker style) ***************
+            <LinearGradientBrush x:Key="BackgroundGradient" >
+                <GradientStop Color="#2F3B4D" Offset="0.1"/>
+                <GradientStop Color="#2E3949" Offset="1.0"/>
+            </LinearGradientBrush>
+
+            <Color x:Key="Primary">#2F3B4D</Color>
+            <Color x:Key="Secondary">#2E3949</Color>-->
+            
+            <LinearGradientBrush x:Key="BackgroundGradient" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#6d85c3" Offset="0.1" />
+                <GradientStop Color="#334266" Offset="1.0" />
+            </LinearGradientBrush>
+            <Color x:Key="Primary">#6d85c3</Color>
+            <Color x:Key="Secondary">#334266</Color>
+            <Color x:Key="WhitePrimary">#DFDFDF</Color>
+            <Color x:Key="WhiteSecondary">#F5F5F5</Color>
+            <Color x:Key="OffWhite">#E6EEED</Color>
+            <Color x:Key="NeutralGray">#5b5b5b</Color>
+            <Color x:Key="GrowGreenText">#2edeaa</Color>
+            <!-- #00B687 -->
+
+            <converters:ScrollValueConverter x:Key="ScrollValueConverter"/>
+            <converters:ComparisonConverter x:Key="ComparisonConverter"/>
+            <converters:ScrollPositionConverter x:Key="ScrollPositionConverter"/>
+
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>

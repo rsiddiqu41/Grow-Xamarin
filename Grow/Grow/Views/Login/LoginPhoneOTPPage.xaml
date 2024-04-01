@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Grow.Views.Login.LoginPhoneOTPPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Padding="20" 
+                Text="Grow"
+                Visual="Material"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontSize="64"
+                TextColor="{StaticResource GrowGreenText}"
+                />
+
+                <Label Padding="20" 
+                Text="We have sent a one-time verification code to the phone number entered. Please enter your verification code before the timer expires."
+                Visual="Material"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontSize="14"
+                TextColor="Black"
+                />
+
+                <Label Text="{Binding OTPTime}" TextColor="{Binding OTPTimeColor}" HorizontalOptions="Center" FontSize="30"/>
+
+                <!--<pin:PinView HorizontalOptions="CenterAndExpand" PinLength="6" EnteredPin="{Binding Code}" Success="PinView_Success"/>-->
+
+                <Grid Margin="20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />                            
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Grid.Row="0" Grid.Column="0" CornerRadius="0" BackgroundColor="#ECECEC">
+                        <Entry x:Name="Code1" Text="{Binding CodeOne}" MaxLength="1" Keyboard="Numeric" ReturnType="Next" TextChanged="Entry_TextChanged" HorizontalOptions="Center" />
+                    </Frame>
+
+                    <Frame Grid.Row="0" Grid.Column="1" CornerRadius="0" BackgroundColor="#ECECEC">
+                        <Entry x:Name="Code2" Text="{Binding CodeTwo}" MaxLength="1" Keyboard="Numeric" ReturnType="Next" TextChanged="Entry_TextChanged" HorizontalOptions="Center"/>
+                    </Frame>
+
+                    <Frame Grid.Row="0" Grid.Column="2" CornerRadius="0" BackgroundColor="#ECECEC">
+                        <Entry x:Name="Code3" Text="{Binding CodeThree}" MaxLength="1" Keyboard="Numeric" ReturnType="Next" TextChanged="Entry_TextChanged" HorizontalOptions="Center"/>
+                    </Frame>
+
+                    <Frame Grid.Row="0" Grid.Column="3" CornerRadius="0" BackgroundColor="#ECECEC">
+                        <Entry x:Name="Code4" Text="{Binding CodeFour}" MaxLength="1" Keyboard="Numeric" ReturnType="Next" TextChanged="Entry_TextChanged" HorizontalOptions="Center"/>
+                    </Frame>
+
+                    <Frame Grid.Row="0" Grid.Column="4" CornerRadius="0" BackgroundColor="#ECECEC">
+                        <Entry x:Name="Code5" Text="{Binding CodeFive}" MaxLength="1" Keyboard="Numeric" ReturnType="Next" TextChanged="Entry_TextChanged" HorizontalOptions="Center"/>
+                    </Frame>
+
+                    <Frame Grid.Row="0" Grid.Column="5" CornerRadius="0" BackgroundColor="#ECECEC">
+                        <Entry x:Name="Code6" Text="{Binding CodeSix}" MaxLength="1" Keyboard="Numeric" ReturnType="Next" TextChanged="Entry_TextChanged" HorizontalOptions="Center"/>
+                    </Frame>
+
+                    <Grid Grid.Row="1" Grid.ColumnSpan="6">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding ErrorPrompt}" TextColor="OrangeRed" FontFamily="RubikBoldFont" FontSize="16" Margin="20,20"/>
+                            <Button Text="Return to start page"    
+                                HorizontalOptions="Center"
+                                Command="{Binding HomeCommand}"
+                                IsVisible="{Binding IsHomeButtonVisible}"
+                                BackgroundColor="{StaticResource GrowGreenText}"
+                                CornerRadius="21"
+                                Margin="20"/>
+                        </StackLayout>
+                    </Grid>
+                </Grid>             
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

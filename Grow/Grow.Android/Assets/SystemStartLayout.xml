@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SystemStartScreen>
+  <SystemStartLayoutRecords>
+    <SlideTitle>Grow</SlideTitle>
+    <!--<Details>A place where you can learn to grow both Financially and Intellectually</Details>-->
+    <Details>Take control of your finances by tracking and budgeting your spending and learn to invest like the top one percent.</Details>
+    <ImageUrl>TreeSplashScreen.json</ImageUrl>
+  </SystemStartLayoutRecords>
+  <SystemStartLayoutRecords>
+    <SlideTitle>Stay on top of your spending</SlideTitle>
+    <Details>Link bank accounts and credit card accounts through our secure portal to analyze and improve your spending habits.</Details>
+    <ImageUrl>AppBankConnectivity.json</ImageUrl>
+  </SystemStartLayoutRecords>
+  <SystemStartLayoutRecords>
+    <SlideTitle>Budget your money your way</SlideTitle>
+    <!--<Details>Whether you're saving up for a new house or trying to pay off student loans, Grow provides all the tools you need to budget your money in order to achieve your financial goals</Details>-->
+    <Details>Use our custom planners to create and track custom short term and long term financial goals.</Details>
+    <ImageUrl>Money.json</ImageUrl>
+  </SystemStartLayoutRecords>
+  <SystemStartLayoutRecords>
+    <SlideTitle>Expand your knowledge</SlideTitle>
+    <Details>We have gathered industry professionals from many different financial fields to create FREE video lectures on topics that are designed to help you reach your long term goals.</Details>
+    <ImageUrl>Knowledge.json</ImageUrl>
+  </SystemStartLayoutRecords>
+  <SystemStartLayoutRecords>
+    <SlideTitle>Make your money work for you</SlideTitle>
+    <Details>Has the idea of investing always sounded scary to you? YOU'RE NOT ALONE! Many people are scared of the idea of investing and we'll teach you the basics and help break down all the scary terms they use in industries like the stock market and real estate so you can start learning how to make your money work for you.</Details>
+    <ImageUrl>ChartAnimations.json</ImageUrl>
+  </SystemStartLayoutRecords>
+</SystemStartScreen>

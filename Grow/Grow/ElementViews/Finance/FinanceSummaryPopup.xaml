@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<popups:PopupPage xmlns:popups="http://rotorgames.com" 
+                  xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:vm="clr-namespace:Grow.ElementViewModels"
+             x:Class="Grow.ElementViews.Finance.FinanceSummaryPopup">
+
+    <popups:PopupPage.Animation>
+        <popups:MoveAnimation
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            DurationIn="400"
+            DurationOut="300"
+            HasBackgroundAnimation="True"/>
+    </popups:PopupPage.Animation>
+    
+    <StackLayout Margin="20" Spacing="20" Padding="24" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White">
+        <Label x:Name="Header" Text="{Binding Header}" FontSize="Large" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="Black"/>
+        <Label x:Name="Body" Text="{Binding Body}" FontSize="Medium" />
+        <Label Text="Tap outside the box to exit" FontSize="Small" HorizontalOptions="Center" />
+    </StackLayout>
+    
+</popups:PopupPage>

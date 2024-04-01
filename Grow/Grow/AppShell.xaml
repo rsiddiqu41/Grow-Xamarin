@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:Grow.Views"
+       Title="Grow"
+       x:Class="Grow.AppShell">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+
+                <!--<Setter Property="Shell.TabBarBackgroundColor" Value="" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>-->
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource GrowGreenText}"/>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+    
+    <ShellItem Route="StartPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:StartPage}"/>
+    </ShellItem>
+
+    <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
+    </ShellItem>
+
+    <ShellItem Route="RegistrationPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:RegistrationPage}"/>
+    </ShellItem>
+
+    <FlyoutItem Title="Finance" Icon="icon_about.png">
+        <Tab Title="Overview" Icon="home.png">
+            <ShellContent Route="FinanceOverviewPage" ContentTemplate="{DataTemplate local:FinanceOverviewPage}" Style="{StaticResource BaseStyle}"/>
+        </Tab>
+        <Tab Title="Analyze" Icon="pie_chart.png">
+            <ShellContent Route="FinanceAnalyzePage" ContentTemplate="{DataTemplate local:FinanceAnalyzePage}" Style="{StaticResource BaseStyle}"/>
+        </Tab>
+        <Tab Title="Savings" Icon="trophy.png">
+            <ShellContent Route="FinanceSavingsPage" ContentTemplate="{DataTemplate local:FinanceSavingsPage}" Style="{StaticResource BaseStyle}"/>
+        </Tab>
+        <Tab Title="Debt Payoff" Icon="calculator.png">
+            <ShellContent Style="{StaticResource BaseStyle}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Knowledge" Icon="icon_feed.png">
+        <Tab Title="Learn" Icon="home.png">
+            <ShellContent Route="KnowledgeHome" ContentTemplate="{DataTemplate local:KnowledgeHome}" Style="{StaticResource BaseStyle}" />
+        </Tab>
+        <Tab Title="Explore" Icon="trophy.png" Style="{StaticResource BaseStyle}">
+            <ShellContent />
+        </Tab>
+        <!--<Tab Title="Notes" Icon="notes.png">
+            <ShellContent />
+        </Tab>
+        <Tab Title="Term Search" Icon="investopedia.png">
+            <ShellContent />
+        </Tab>-->
+    </FlyoutItem>
+
+
+    <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
+    <MenuItem Text="Terms and Service" StyleClass="MenuItemLayoutStyle">
+    </MenuItem>
+
+    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="MenuLogout_Clicked">
+    </MenuItem>
+
+</Shell>

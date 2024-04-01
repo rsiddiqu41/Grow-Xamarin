@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Grow.Views.Misc.AccountDisplayView">
+    <ContentView.Content>
+        <Frame HasShadow="True" HorizontalOptions="Center" Margin="40,6"
+                CornerRadius="10" BackgroundColor="{Binding BackgroundColor}"
+                HeightRequest="60" Padding="0" >
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding TapCommand}" />
+            </Frame.GestureRecognizers>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding Icon}" HeightRequest="20" VerticalOptions="Center" Aspect="AspectFit"/>
+                <Label Grid.ColumnSpan="3" FontAttributes="Bold" Text="{Binding Value}" FontSize="{Binding TextSize}" FontFamily="RubikNormalFont"
+                        TextColor="{Binding TextColor}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>
